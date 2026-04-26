@@ -181,7 +181,6 @@ def crea_provincia(provincia,imagen):
     aux=dividir_parrafo(parrafos[0])
     primero=aux[0]
     segundo=aux[1]
-    #crea_estilos()
     res=crea_migas_provincia(provincia)
 
 
@@ -194,6 +193,7 @@ def crea_provincia(provincia,imagen):
             f'\t\t\t\t<h2>Directorio de {tipo_negocio} en la provincia de {provincia}</h2>'
             f'\t\t\t\t{crea_parrafo(primero)}\n'
             f'\t\t\t\t{crea_parrafo(segundo)}\n'
+            f'{crea_bloque_anuncio_manual()}'
 			'\t\t\t\t<a class="intro-cta" href="#empresas">Ver empresas destacadas</a>\n'
 		'\t\t\t</div>\n'
 		'\t\t\t<figure class="wp-block-media-text__media">\n'
@@ -241,6 +241,7 @@ def crea_localidad(localidad,provincia,imagen):
         f'\t\t\t\t<h2>Directorio de {tipo_negocio} en la provincia de {localidad}</h2>'
         f'\t\t\t{crea_parrafo(primero)}\n'
         f'\t\t\t{crea_parrafo(segundo)}\n'
+        f'{crea_bloque_anuncio_manual()}'
 		'\t\t\t<a class="intro-cta" href="#empresas">Ver empresas destacadas</a>\n'
 		'\t\t</div>\n'
 		'\t\t<figure class="wp-block-media-text__media">\n'
@@ -249,23 +250,13 @@ def crea_localidad(localidad,provincia,imagen):
 	    '\t</div>\n'
         '</div>\n'
 
-        #f'<!-- wp:media-text {{"mediaPosition":"right","mediaId":{imagen.get_id()},"mediaLink":"{dominio}/localidad/ciudad/#main","mediaType":"image"}} -->\n'
-        #'\t<div class="wp-block-media-text has-media-on-the-right is-stacked-on-mobile">\n'
-        #'\t\t<div class="wp-block-media-text__content">\n'
+      
      
         
         '<div class="bloque-parrafo-normal">\n'
         f'{crea_texto_ciudad(localidad)}'
         '</div>\n'
 
-        #'\t\t</div>\n'
-        #'\t\t<figure class="wp-block-media-text__media">\n'
-        #f'\t\t\t<img src="{imagen.get_url()}" alt="Panorámica de {ciudad}" class="wp-image-{imagen.get_id()} size-full"/>\n'
-        #'\t\t</figure>\t</div>\n'
-        #'<!-- /wp:media-text -->\n'
-        #'<div class="bloque-parrafo-normal">\n'
-        #f'{crea_texto_ciudad(ciudad)}'
-        #'</div>\n'
 
         '<!-- wp:group {"layout":{"type":"constrained"}} -->\n'
         '\t<div class="wp-block-group">\n'
@@ -287,14 +278,7 @@ def crea_localidad(localidad,provincia,imagen):
     return res
 
 def crea_negocio(negocio):
-    #res=crea_estilos()
-    res+=crea_migas_negocio(negocio) 
-    '''res=('<!-- wp:html -->\n'
-        '\t<div class="migas">\n'
-        f'\t\t<p><a href="{dominio}">Inicio</a> &gt; <a href="{dominio}/{sluguiza("Provincia de "+negocio.provincia)}">{negocio.provincia}</a> &gt; <a href="{dominio}/{sluguiza(negocio.ciudad)}">{negocio.ciudad}</a> &gt; {negocio.nombre}</p>'
-        '\t</div>\n'
-        '<!-- /wp:html -->\n'
-    )'''
+    res=crea_migas_negocio(negocio) 
     res+=crea_bloque_contacto(negocio)
     if negocio.horario!=None:
         res+=crea_bloque_horario(negocio)       

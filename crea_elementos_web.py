@@ -146,12 +146,12 @@ def crea_reviews(negocio):
     res=('[su_row class="bloque-opiniones"]'
          '\t[su_column size="1/2" center="no" class=""]'
         '\t\t<!-- wp:shortcode -->'
-        f'\t\t\t[site_reviews_summary rate="4" assigned_terms="{sluguiza(negocio.nombre)}" hide="percentage,bar"]'
+        f'\t\t\t[site_reviews_summary   assigned_posts="post_id" id="rating-summary" hide="percentage,bar"]'
         '\t\t<!-- /wp:shortcode -->'        
         '\t</su_column>'
         '\t[su_column size="1/2" center="no" class=""]'
         '\t\t<!-- wp:shortcode -->'
-        f'\t\t\t[site_reviews_form assigned_terms="{sluguiza(negocio.nombre)}" hide="content,email,terms,title,name"]'
+        f'\t\t\t[site_reviews_form  assigned_posts="post_id" summary_id="rating-summary" hide="content,email,terms,title,name"]'
         '\t\t<!-- /wp:shortcode -->'
         '\t</su_column>'
         '</su_row>'
@@ -160,7 +160,7 @@ def crea_reviews(negocio):
 def crea_contenedor(contenido):
     res=(
         '<!-- wp:group {"layout":{"type":"constrained"}} -->\n'
-        '\t<div class="wp-block-group contenedor">'
+        '\t<div class="wp-block-group bloque-intro-imagen">'
         f'\t\t{contenido}'
         '</div>\n'
         '<!-- /wp:group -->\n\n'
@@ -170,14 +170,21 @@ def crea_contenedor(contenido):
 def crea_contenedor_contacto(contenido):
     res=(
         '<!-- wp:group {"layout":{"type":"constrained"}} -->\n'
-        f'\t<div class="wp-block-group contenedor-contacto" style="background-color: {color_base3}; border-radius:12px; padding:24px 20px; box-shadow:0 2px 8px rgba(15,23,42,0.06);">'
+        f'\t<div class="wp-block-group focus
+        -contacto" style="background-color: {color_base3}; border-radius:12px; padding:24px 20px; box-shadow:0 2px 8px rgba(15,23,42,0.06);">'
         f'\t\t{contenido}'
         '</div>\n'
         '<!-- /wp:group -->\n\n'
     )
     return res
 
-
+def crea_bloque_anuncio_manual():
+    res=(
+        '<!-- wp:shortcode -->\n'
+        '\t[adinserter name="anuncio_manual"]\n'
+        '<!-- /wp:shortcode -->\n'
+    )
+    return res
 
 def crea_bloque_contacto(negocio):
     res=(f'{crea_heading("Datos de contacto",2)}'    
@@ -187,9 +194,7 @@ def crea_bloque_contacto(negocio):
     if negocio.web!=None:
         res+=f'{crea_lista_web(negocio.web)}'
 
-    res+='\t<!-- wp:shortcode -->\n'
-    res+='\t\t[adinserter name="anuncio_manual"]\n'
-    res+='\t<!-- /wp:shortcode -->\n'
+    res+=crea_bloque_anuncio_manual()
     res+=f'{crea_botones_datos_contacto(negocio.telefono,negocio.web)}'
     return crea_contenedor(res)
 

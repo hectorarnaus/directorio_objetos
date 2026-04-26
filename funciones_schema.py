@@ -30,13 +30,13 @@ def obten_datos_schema_negocio(negocio):
         f'\t\t"addressRegion": "{negocio.provincia}",\n'
         '\t\t"addressCountry": "ES"\n'
         '\t\t},\n'
-        f'\t"telephone": "{negocio.telefono}",\n'
+        f'\t"telephone": "{negocio.telefono}"'
     )   
     if negocio.web!=None and negocio.web!="":
-        res+=f'\t"url": "{negocio.web}",\n'
+        res+=f',\n\t"url": "{negocio.web}"\n'
     if negocio.horario!=None and negocio.horario!="":
         if negocio.obten_horario_schema().endswith(",\n"):
-            res+=negocio.obten_horario_schema()[:-2]+"\n"
+            res+=",\n"+negocio.obten_horario_schema()[:-2]+"\n"
    
     
     
@@ -62,7 +62,7 @@ def crea_schema_municipio(municipio):
         )
         schema_negocio+=obten_datos_schema_negocio(negocios[i])
         schema_negocio+='\t\t\t}\n'
-        schema_negocio+='\t\t}\n'
+        #schema_negocio+='\t\t}\n'
         schema_negocio+='\t}\n'
 
         if i<len(negocios)-1:
