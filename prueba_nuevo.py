@@ -1,5 +1,4 @@
 from funciones import *
-from funciones import crea_estilos
 from funciones_excel import *
 from Modelo.negocio import *
 from funciones_generar_texto import *
@@ -57,6 +56,7 @@ for img in os.listdir(ruta):
         wp_article.set_slug(sluguiza(municipio))
         wc.publica_post(wp_article)
 
+
 for negocio in negocios:
     print("Creando el artículo del negocio "+negocio.nombre)
     wp_article=WpPost(negocio.nombre,sluguiza(negocio.ciudad))
@@ -65,4 +65,3 @@ for negocio in negocios:
     wp_article.set_slug(sluguiza(negocio.nombre))
     wc.publica_post(wp_article)
 
-    
