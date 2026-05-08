@@ -170,8 +170,7 @@ def crea_contenedor(contenido):
 def crea_contenedor_contacto(contenido):
     res=(
         '<!-- wp:group {"layout":{"type":"constrained"}} -->\n'
-        f'\t<div class="wp-block-group focus
-        -contacto" style="background-color: {color_base3}; border-radius:12px; padding:24px 20px; box-shadow:0 2px 8px rgba(15,23,42,0.06);">'
+        f'\t<div class="wp-block-group focus-contacto" style="background-color: {color_base3}; border-radius:12px; padding:24px 20px; box-shadow:0 2px 8px rgba(15,23,42,0.06);">'
         f'\t\t{contenido}'
         '</div>\n'
         '<!-- /wp:group -->\n\n'

@@ -8,7 +8,7 @@ def limpia_comillas(texto):
     return texto
 
 class Negocio:
-    def __init__(self,nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline):
+    def __init__(self,nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria):
         self.nombre=html.escape(str(nombre))
         self.direccion=html.escape(str(direccion))
         self.CP=html.escape(str(CP))
@@ -45,7 +45,7 @@ class Negocio:
             self.horario=None
         self.descripcion_seo=html.escape(str(descripcion_seo))
         self.tagline=tagline
-        
+        self.categoria=categoria
    
     def __str__(self):
         return f'nombre={self.nombre} ciudad={self.ciudad}'

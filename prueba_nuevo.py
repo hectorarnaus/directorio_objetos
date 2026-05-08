@@ -18,6 +18,9 @@ crea_estilos()
 
 lista_provincias=obten_lista_provincias(excel_empresas)
 lista_municipios=obten_lista_municipios(excel_empresas)
+lista_ciudades_con_mas_de_un_negocio=obten_ciudades_con_mas_de_un_negocio(excel_empresas)
+for ciudad in lista_ciudades_con_mas_de_un_negocio:
+    print(ciudad)
 for municipio in lista_municipios:
     print(municipio)
 negocios=obten_lista_negocios(excel_empresas)
@@ -52,7 +55,7 @@ for img in os.listdir(ruta):
         wp_img=Image(ruta+"/"+img,f"{tipo_negocio} en el municipio de {municipio}")
         wp_img.upload(wc)
         wp_article=WpPost(f"{tipo_negocio} en el municipio de {municipio}","Provincia de "+Provincia)
-        wp_article.add_element(crea_localidad(municipio,Provincia,wp_img))
+        wp_article.add_element(crea_localidad(municipio,Provincia,wp_img,lista_ciudades_con_mas_de_un_negocio))
         wp_article.set_slug(sluguiza(municipio))
         wc.publica_post(wp_article)
 
@@ -61,7 +64,8 @@ for negocio in negocios:
     print("Creando el artículo del negocio "+negocio.nombre)
     wp_article=WpPost(negocio.nombre,sluguiza(negocio.ciudad))
     wp_article.add_tag(negocio.ciudad)
-    wp_article.add_element(crea_negocio(negocio))
+    wp_article.add_tag(negocio.categoria)
+    wp_article.add_element(crea_negocio(negocio,lista_ciudades_con_mas_de_un_negocio))
     wp_article.set_slug(sluguiza(negocio.nombre))
     wc.publica_post(wp_article)
 

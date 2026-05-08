@@ -224,7 +224,7 @@ def crea_provincia(provincia,imagen):
         '\t<!-- /wp:group -->\n')
     return res
 
-def crea_localidad(localidad,provincia,imagen):
+def crea_localidad(localidad,provincia,imagen,lista_negocios_misma_ciudad):
     parrafos=extraer_parrafos(obten_texto_cuerpo_localidad(localidad))
     aux=dividir_parrafo(parrafos[0])
     primero=aux[0]
@@ -265,18 +265,21 @@ def crea_localidad(localidad,provincia,imagen):
         f'\t<!-- wp:dpt/display-post-types {{"taxonomy":"category","terms":["{localidad}"],"number":100,"styleSup":["title"],"showPgnation":true}} /--></div>\n'
 
         '<!-- /wp:group -->'
-        f'{imprime_lista_negocios(obten_lista_negocios_municipio(excel_empresas,localidad))}'
-        '<script type="application/ld+json">\n'
+        )
+    if localidad in lista_negocios_misma_ciudad:
+        res+=f'{imprime_lista_negocios(obten_lista_negocios_municipio(excel_empresas,localidad))}'
+    res+=('<script type="application/ld+json">\n'
         f'{crea_schema_municipio(localidad)}'
         '</script>\n'
-        )
+    )
+        
     
     
 
 
     return res
 
-def crea_negocio(negocio):
+def crea_negocio(negocio,lista_negocios_misma_ciudad):
     res=crea_migas_negocio(negocio) 
     res+=crea_bloque_contacto(negocio)
     if negocio.horario!=None:
@@ -287,8 +290,8 @@ def crea_negocio(negocio):
         res+=crea_bloque_imagen(negocio)
     res+=crea_bloque_reviews(negocio)
     res+=crea_bloque_descripcion_seo(negocio)
-
-    res+=crea_bloque_otros_negocios(negocio)
+    if negocio.ciudad in lista_negocios_misma_ciudad:
+        res+=crea_bloque_otros_negocios(negocio)
     
     res+=crea_schema_negocio(negocio)
         

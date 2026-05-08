@@ -1,0 +1,680 @@
+<!-- wp:html -->
+<style>
+:root {
+	--color-base: #1F2937;
+	--color-base2: #374151;
+	--color-base3: #F3F4F6;
+	--color-contrast: #111827;
+	--color-contrast2: #9CA3AF;
+	--color-contrast3: #E5E7EB;
+	--color-accent: #F2B900;
+}
+
+.home-hero {
+	background: linear-gradient(135deg, var(--color-base) 0%, var(--color-base2) 100%);
+	color: white;
+	padding: 120px 20px 80px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.home-hero::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: var(--color-accent);
+}
+
+.home-hero h1 {
+	font-size: clamp(3.2rem, 7vw, 5.8rem);
+	margin: 0 0 20px;
+	line-height: 1.05;
+	font-weight: 800;
+}
+
+.hero-subtitle {
+	font-size: 1.35rem;
+	max-width: 720px;
+	margin: 0 auto;
+	opacity: 0.95;
+}
+
+.seccion {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 64px 20px;
+}
+
+.seccion h2 {
+	margin: 0 0 32px;
+	font-size: clamp(2rem, 4vw, 3.2rem);
+	text-align: center;
+	color: var(--color-contrast);
+}
+
+.grid-categorias {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 24px;
+	margin-bottom: 64px;
+	max-width: 1200px;
+	margin-inline: auto;
+}
+
+.cat-card {
+	background: white;
+	border: 1px solid var(--color-contrast3);
+	border-radius: 20px;
+	padding: 32px;
+	text-align: center;
+	box-shadow: 0 10px 28px rgba(31,41,55,0.06);
+	transition: all 0.3s;
+	height: 180px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-decoration: none;
+}
+
+.cat-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 20px 48px rgba(31,41,55,0.12);
+}
+
+.cat-card h3 {
+	margin: 0 0 12px;
+	font-size: 1.6rem;
+	color: var(--color-contrast);
+}
+
+.cat-card p {
+	margin: 0;
+	color: var(--color-base2);
+	line-height: 1.6;
+}
+
+.cat-card .cta-cat {
+	margin-top: 16px;
+	color: var(--color-accent);
+	font-weight: 700;
+	text-decoration: none;
+	align-self: center;
+}
+
+.grid-provincias {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 24px;
+}
+
+.prov-card {
+	background: white;
+	border: 1px solid var(--color-contrast3);
+	border-radius: 20px;
+	padding: 28px;
+	display: flex;
+	gap: 20px;
+	box-shadow: 0 8px 24px rgba(31,41,55,0.06);
+	transition: all 0.3s;
+	text-decoration: none;
+	color: inherit;
+}
+
+.prov-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 20px 48px rgba(31,41,55,0.12);
+}
+
+.prov-icon {
+	font-size: 2.8rem;
+	flex-shrink: 0;
+}
+
+.prov-info h3 {
+	margin: 0 0 4px;
+	color: var(--color-contrast);
+	font-size: 1.4rem;
+}
+
+.prov-info .empresas {
+	font-size: 2.2rem;
+	font-weight: 800;
+	color: var(--color-accent);
+	margin: 8px 0;
+}
+
+.prov-info .cta {
+	color: var(--color-accent);
+	font-weight: 700;
+}
+
+.testimonios-carousel {
+	background: var(--color-base3);
+	padding: 64px 20px;
+	overflow: hidden;
+}
+
+.testimonios-carousel h2 {
+	text-align: center;
+	font-size: clamp(2rem, 4vw, 3.2rem);
+	color: var(--color-contrast);
+	margin-bottom: 48px;
+}
+
+.carousel-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel-viewport {
+	overflow: hidden;
+}
+
+.carousel-track {
+	display: flex;
+	gap: 24px;
+	transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	will-change: transform;
+}
+
+.testimonio-slide {
+	background: white;
+	padding: 36px 32px;
+	border-radius: 24px;
+	border: 1px solid var(--color-contrast3);
+	box-shadow: 0 16px 40px rgba(31,41,55,0.08);
+	flex: 0 0 380px;
+	min-height: 260px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+}
+
+.testimonio-slide::before {
+	content: '⭐⭐⭐⭐⭐';
+	position: absolute;
+	top: -12px;
+	left: 32px;
+	background: white;
+	padding: 0 16px;
+	font-size: 1.1rem;
+	color: var(--color-accent);
+}
+
+.testimonio-slide h4 {
+	margin: 0 0 16px;
+	color: var(--color-contrast);
+	font-size: 1.35rem;
+	line-height: 1.3;
+}
+
+.testimonio-slide p {
+	margin: 0 0 20px;
+	color: var(--color-base2);
+	line-height: 1.75;
+	font-size: 1.05rem;
+	flex-grow: 1;
+}
+
+.testimonio-firma {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 0.98rem;
+}
+
+.testimonio-avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--color-accent), #E5A800);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-contrast);
+	font-weight: 700;
+	font-size: 1.1rem;
+	flex-shrink: 0;
+}
+
+.firma-nombre {
+	font-weight: 700;
+	color: var(--color-contrast);
+}
+
+.firma-empresa {
+	color: var(--color-contrast2);
+	font-size: 0.95rem;
+}
+
+.carousel-nav {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 40px;
+}
+
+.carousel-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--color-contrast3);
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.carousel-dot.active {
+	background: var(--color-accent);
+	transform: scale(1.3);
+}
+
+.carousel-prev,
+.carousel-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(255,255,255,0.9);
+	border: none;
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.4rem;
+	box-shadow: 0 8px 24px rgba(31,41,55,0.15);
+	transition: all 0.3s;
+	z-index: 10;
+}
+
+.carousel-prev {
+	left: -20px;
+}
+
+.carousel-next {
+	right: -20px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+	background: white;
+	transform: translateY(-50%) scale(1.1);
+	box-shadow: 0 12px 32px rgba(31,41,55,0.2);
+}
+
+.cta-seccion {
+	text-align: center;
+	padding: 64px 20px 80px;
+	background: white;
+}
+
+.cta-seccion h2 {
+	margin-bottom: 20px;
+	color: var(--color-contrast);
+}
+
+.cta-seccion .cta-button {
+	display: inline-block;
+	padding: 16px 28px;
+	border-radius: 999px;
+	background: var(--color-accent);
+	color: var(--color-contrast);
+	text-decoration: none;
+	font-weight: 800;
+}
+
+@media (max-width: 768px) {
+	.testimonio-slide {
+		flex: 0 0 100%;
+		min-height: 240px;
+		padding: 28px 24px;
+	}
+
+	.carousel-prev,
+	.carousel-next {
+		width: 44px;
+		height: 44px;
+		font-size: 1.2rem;
+	}
+
+	.carousel-prev {
+		left: -12px;
+	}
+
+	.carousel-next {
+		right: -12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.home-hero {
+		padding: 96px 16px 64px;
+	}
+
+	.testimonios-carousel {
+		padding: 48px 16px;
+	}
+
+	.carousel-prev,
+	.carousel-next {
+		display: none;
+	}
+}
+</style>
+
+<section class="home-hero">
+	<h1>Directorio de empresas de<br><strong>alquiler de maquinaria</strong></h1>
+	<p class="hero-subtitle">Encuentra excavadoras, grúas, plataformas elevadoras y más en tu provincia. Más de 5.000 empresas verificadas.</p>
+</section>
+
+<section class="seccion">
+	<h2>Categorías principales</h2>
+	<div class="grid-categorias">
+		<a href="/maquinaria-construccion" class="cat-card">
+			<div>
+				<h3>🏗️ Construcción</h3>
+				<p>Excavadoras, hormigoneras, grúas torre y andamios para obra.</p>
+			</div>
+			<span class="cta-cat">Ver categoría →</span>
+		</a>
+		<a href="/maquinaria-obras-civiles" class="cat-card">
+			<div>
+				<h3>🛣️ Obras civiles</h3>
+				<p>Compactadoras, plataformas PEMP, zahorras y bombas de achique.</p>
+			</div>
+			<span class="cta-cat">Ver categoría →</span>
+		</a>
+		<a href="/maquinaria-industrial" class="cat-card">
+			<div>
+				<h3>🏭 Industrial</h3>
+				<p>Carretillas elevadoras, grupos electrógenos y transpaletas.</p>
+			</div>
+			<span class="cta-cat">Ver categoría →</span>
+		</a>
+		<a href="/gruas-plataformas" class="cat-card">
+			<div>
+				<h3>🪢 Grúas y plataformas</h3>
+				<p>Grúas móviles, plataformas elevadoras y manipuladores telescópicos.</p>
+			</div>
+			<span class="cta-cat">Ver categoría →</span>
+		</a>
+	</div>
+</section>
+
+<section class="seccion">
+	<h2>Provincias con más empresas</h2>
+	<div class="grid-provincias">
+		<a href="/provincia-de-madrid" class="prov-card">
+			<span class="prov-icon">🏛️</span>
+			<div class="prov-info">
+				<h3>Madrid</h3>
+				<div class="empresas">187 empresas</div>
+				<span class="cta">Ver Madrid →</span>
+			</div>
+		</a>
+		<a href="/provincia-de-barcelona" class="prov-card">
+			<span class="prov-icon">🏙️</span>
+			<div class="prov-info">
+				<h3>Barcelona</h3>
+				<div class="empresas">156 empresas</div>
+				<span class="cta">Ver Barcelona →</span>
+			</div>
+		</a>
+		<a href="/provincia-de-valencia" class="prov-card">
+			<span class="prov-icon">🌴</span>
+			<div class="prov-info">
+				<h3>Valencia</h3>
+				<div class="empresas">89 empresas</div>
+				<span class="cta">Ver Valencia →</span>
+			</div>
+		</a>
+		<a href="/provincia-de-sevilla" class="prov-card">
+			<span class="prov-icon">🕌</span>
+			<div class="prov-info">
+				<h3>Sevilla</h3>
+				<div class="empresas">76 empresas</div>
+				<span class="cta">Ver Sevilla →</span>
+			</div>
+		</a>
+		<a href="/provincia-de-malaga" class="prov-card">
+			<span class="prov-icon">🏖️</span>
+			<div class="prov-info">
+				<h3>Málaga</h3>
+				<div class="empresas">98 empresas</div>
+				<span class="cta">Ver Málaga →</span>
+			</div>
+		</a>
+		<a href="/provincia-de-alicante" class="prov-card">
+			<span class="prov-icon">🌊</span>
+			<div class="prov-info">
+				<h3>Alicante</h3>
+				<div class="empresas">84 empresas</div>
+				<span class="cta">Ver Alicante →</span>
+			</div>
+		</a>
+	</div>
+</section>
+
+<section class="testimonios-carousel">
+	<h2>Constructoras que ya confían en nosotros</h2>
+
+	<div class="carousel-container">
+		<button class="carousel-prev" aria-label="Anterior">‹</button>
+		<div class="carousel-viewport">
+			<div class="carousel-track" id="carouselTrack">
+				<div class="testimonio-slide">
+					<h4>"Encontré la excavadora perfecta en 15 minutos"</h4>
+					<p>Tenía un proyecto urgente en Madrid y necesitaba una excavadora de 15T. El directorio me mostró 3 opciones locales con entrega en 24h. ¡Recomendado!</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">JP</div>
+						<div>
+							<div class="firma-nombre">Juan Pérez</div>
+							<div class="firma-empresa">Constructora Madrid</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="testimonio-slide">
+					<h4>"Plataformas PEMP certificadas en Barcelona"</h4>
+					<p>Para mi obra en altura necesitaba plataformas con certificado EN280. El filtro por categoría me mostró las mejores opciones locales.</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">ML</div>
+						<div>
+							<div class="firma-nombre">María López</div>
+							<div class="firma-empresa">Obras Barcelona</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="testimonio-slide">
+					<h4>"Ahorro del 15% en grúas Valencia"</h4>
+					<p>Comparé 5 proveedores de grúas móviles. El directorio me dio precios competitivos y entrega inmediata. Muy útil.</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">CR</div>
+						<div>
+							<div class="firma-nombre">Carlos Ruiz</div>
+							<div class="firma-empresa">Autónomo Valencia</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="testimonio-slide">
+					<h4>"Grupos electrógenos urgentes Sevilla"</h4>
+					<p>Se nos averió el grupo principal en obra. Encontramos 3 alternativas en menos de una hora. Salvaron el proyecto.</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">AG</div>
+						<div>
+							<div class="firma-nombre">Antonio Gómez</div>
+							<div class="firma-empresa">Obra Civil Sevilla</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="testimonio-slide">
+					<h4>"Carretillas listas para almacén en 24h"</h4>
+					<p>Necesitábamos una carretilla elevadora en un polígono industrial de Murcia y la localizamos en tiempo récord.</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">LR</div>
+						<div>
+							<div class="firma-nombre">Laura Romero</div>
+							<div class="firma-empresa">Logística Murcia</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="testimonio-slide">
+					<h4>"Atención muy rápida para una PEMP"</h4>
+					<p>Buscaba una plataforma elevadora para mantenimiento. El contacto con el proveedor fue inmediato y el servicio impecable.</p>
+					<div class="testimonio-firma">
+						<div class="testimonio-avatar">DM</div>
+						<div>
+							<div class="firma-nombre">Diego Martín</div>
+							<div class="firma-empresa">Mantenimiento Madrid</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-next" aria-label="Siguiente">›</button>
+
+		<div class="carousel-nav" id="carouselNav">
+			<span class="carousel-dot active" data-slide="0"></span>
+			<span class="carousel-dot" data-slide="1"></span>
+			<span class="carousel-dot" data-slide="2"></span>
+			<span class="carousel-dot" data-slide="3"></span>
+			<span class="carousel-dot" data-slide="4"></span>
+			<span class="carousel-dot" data-slide="5"></span>
+		</div>
+	</div>
+</section>
+
+<section class="cta-seccion">
+	<h2>¿Buscas maquinaria ya?</h2>
+	<p style="font-size: 1.2rem; color: var(--color-base2); max-width: 600px; margin: 0 auto 32px;">Encuentra tu proveedor en 30 segundos</p>
+	<a class="cta-button" href="/todas-provincias">Ver todas las provincias</a>
+</section>
+
+<script>
+(function() {
+	const track = document.getElementById('carouselTrack');
+	const originalSlides = Array.from(track.children);
+	const dots = document.querySelectorAll('.carousel-dot');
+	const prev = document.querySelector('.carousel-prev');
+	const next = document.querySelector('.carousel-next');
+	const slideCount = originalSlides.length;
+	let currentIndex = 0;
+	let isTransitioning = false;
+	let autoPlay;
+
+	function cloneSlides() {
+		originalSlides.forEach(slide => {
+			const clone = slide.cloneNode(true);
+			clone.classList.add('clone');
+			track.appendChild(clone);
+		});
+	}
+
+	function getSlideWidth() {
+		const slide = track.querySelector('.testimonio-slide');
+		return slide.getBoundingClientRect().width + 24;
+	}
+
+	function setPosition(animate = true) {
+		track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+		track.style.transform = `translateX(${-currentIndex * getSlideWidth()}px)`;
+	}
+
+	function updateDots() {
+		const active = currentIndex % slideCount;
+		dots.forEach((dot, i) => dot.classList.toggle('active', i === active));
+	}
+
+	function nextSlide() {
+		if (isTransitioning) return;
+		isTransitioning = true;
+		currentIndex++;
+		setPosition(true);
+		updateDots();
+
+		if (currentIndex === slideCount) {
+			setTimeout(() => {
+				currentIndex = 0;
+				setPosition(false);
+				isTransitioning = false;
+			}, 650);
+		} else {
+			setTimeout(() => { isTransitioning = false; }, 650);
+		}
+	}
+
+	function prevSlideFn() {
+		if (isTransitioning) return;
+		if (currentIndex === 0) {
+			currentIndex = slideCount;
+			setPosition(false);
+		}
+		isTransitioning = true;
+		currentIndex--;
+		setPosition(true);
+		updateDots();
+		setTimeout(() => { isTransitioning = false; }, 650);
+	}
+
+	function goToSlide(index) {
+		currentIndex = index;
+		setPosition(true);
+		updateDots();
+	}
+
+	function startAuto() {
+		stopAuto();
+		autoPlay = setInterval(nextSlide, 4000);
+	}
+
+	function stopAuto() {
+		if (autoPlay) clearInterval(autoPlay);
+	}
+
+	cloneSlides();
+	setPosition(false);
+	updateDots();
+	startAuto();
+
+	dots.forEach((dot, index) => {
+		dot.addEventListener('click', () => {
+			goToSlide(index);
+			startAuto();
+		});
+	});
+
+	prev.addEventListener('click', () => {
+		prevSlideFn();
+		startAuto();
+	});
+
+	next.addEventListener('click', () => {
+		nextSlide();
+		startAuto();
+	});
+
+	const container = document.querySelector('.carousel-container');
+	container.addEventListener('mouseenter', stopAuto);
+	container.addEventListener('mouseleave', startAuto);
+
+	window.addEventListener('resize', () => setPosition(false));
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->

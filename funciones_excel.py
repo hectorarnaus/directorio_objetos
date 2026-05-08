@@ -225,8 +225,9 @@ def obten_lista_negocios(fichero_excel):
             horario=limpiar_horario(hoja_activa.cell(row=fila,column=18).value if hoja_activa.cell(row=fila,column=18).value!=None else None)
             descripcion_seo=hoja_activa.cell(row=fila,column=19).value  if hoja_activa.cell(row=fila,column=19).value!=None else None
             tagline=hoja_activa.cell(row=fila,column=20).value  if hoja_activa.cell(row=fila,column=20).value!=None else None
+            categoria=hoja_activa.cell(row=fila,column=21).value  if hoja_activa.cell(row=fila,column=21).value!=None else None
 
-            nuevo=Negocio(nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline)
+            nuevo=Negocio(nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria)
             
             lista_negocios.append(nuevo)
             fila+=1
@@ -316,3 +317,30 @@ def obten_lista_actividades_municipios(fichero_excel):
         print(f"Ocurrió un error: {e}")
                
 
+
+def obten_ciudades_con_mas_de_un_negocio(fichero_excel):
+    
+    
+    try:
+        datos=openpyxl.load_workbook(fichero_excel)
+        hoja_activa = datos.active
+        fila=1
+        lista_ciudades=[]
+        while fila<ultima_fila_real(hoja_activa):
+           
+            ciudad=hoja_activa.cell(row=fila,column=4).value if hoja_activa.cell(row=fila,column=4).value!=None else None
+            lista_ciudades.append(ciudad)
+            fila+=1
+    
+        lista_ciudades_mas_un_negocio=[]
+        for ciudad in lista_ciudades:
+            print(f"{ciudad}={lista_ciudades.count(ciudad)}")
+        for ciudad in lista_ciudades:
+            if lista_ciudades.count(ciudad)>1:
+                if ciudad not in lista_ciudades_mas_un_negocio:
+                    lista_ciudades_mas_un_negocio.append(ciudad)         
+        return lista_ciudades_mas_un_negocio
+    except FileNotFoundError:
+        print("Error: Archivo no encontrado.")
+    except Exception as e:
+        print(f"Ocurrió un error: {e}")
