@@ -1,0 +1,9 @@
+Instalar wordpress
+Crear entradas
+Añadir plugins
+Añadir plantilla (Astra)
+Añadir CSS
+eliminar siguiente-anterior
+Crear páginas estáticas
+Establecer página inicio
+Plantilla Kadence: indicar colores, diseño de entrada, identidad sitio

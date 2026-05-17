@@ -30,8 +30,9 @@ etiquetas=['crepería','crepes','creperias cerca','crepe suzette','crepe nutella
 lista_categorias=[]
 
 
-wc=WpConnection(f"{dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo3o,Eresgay')
+wc=WpConnection(f"{dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo4o#Eresgay')
 wc.connect()
+'''
 ruta=os.getcwd()+("/provincia")
 for img in os.listdir(ruta):
     Provincia=obten_nombre_provincia(img)
@@ -69,3 +70,5 @@ for negocio in negocios:
     wp_article.set_slug(sluguiza(negocio.nombre))
     wc.publica_post(wp_article)
 
+#for provincia in lista_provincias:
+'''    
