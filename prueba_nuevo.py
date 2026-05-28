@@ -44,6 +44,7 @@ for img in os.listdir(ruta):
         wp_article.add_element(crea_provincia(Provincia,wp_img))
         wp_article.set_slug(sluguiza("provincia de "+Provincia))
         wp_article.add_category("provincia")
+        wp_article.set_excerpt(f"Descubre todas las {tipo_negocio.lower()} en la provincia de {Provincia} ordenadas por orden alfabético")
         wc.publica_post(wp_article)
 
 
@@ -58,6 +59,7 @@ for img in os.listdir(ruta):
         wp_article=WpPost(f"{tipo_negocio} en el municipio de {municipio}","Provincia de "+Provincia)
         wp_article.add_element(crea_localidad(municipio,Provincia,wp_img,lista_ciudades_con_mas_de_un_negocio))
         wp_article.set_slug(sluguiza(municipio))
+        wp_article.set_excerpt(f"Descubre todas las {tipo_negocio.lower()} en el municipio de {municipio} ordenadas por orden alfabético")
         wc.publica_post(wp_article)
 
 
@@ -68,6 +70,7 @@ for negocio in negocios:
     wp_article.add_tag(negocio.categoria)
     wp_article.add_element(crea_negocio(negocio,lista_ciudades_con_mas_de_un_negocio))
     wp_article.set_slug(sluguiza(negocio.nombre))
+    wp_article.set_excerpt(f"Descubre toda la información sobre {negocio.nombre}, un {negocio.categoria} ubicado en {negocio.ciudad}.")
     wc.publica_post(wp_article)
 
 #for provincia in lista_provincias:

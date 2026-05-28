@@ -12,6 +12,7 @@ class WpPost():
     def __init__(self,titulo,categoria=None):
         self.post = WordPressPost()
         self.post.title=titulo
+        self.excerpt=""
         self.post.content=""
         if categoria==None:
           self.post.terms_names = {
@@ -47,4 +48,6 @@ class WpPost():
 
     def set_slug(self,slug):
        self.post.slug=slug
-
+    
+    def set_excerpt(self,excerpt):
+       self.post.excerpt=excerpt
