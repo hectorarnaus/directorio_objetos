@@ -3,7 +3,7 @@ from ficheros_datos.constantes_configuracion import *
 from funciones_excel import *
 
 lista_provincias=crea_lista_provincias(excel_provincias)
-lista_localidades=crea_lista_localidades(excel_localidades)
+lista_localidades=crea_lista_localidades(excel_municipios)
 for provincia in lista_provincias:
     for localidad in lista_localidades:
         if localidad.provincia==provincia.nombre:

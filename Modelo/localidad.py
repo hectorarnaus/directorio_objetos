@@ -3,7 +3,8 @@ class Localidad:
         self.nombre=nombre
         self.provincia=provincia
         self.texto=texto
-        self.actividades=actividades.split(',')
+        self.actividades=actividades
+        self.empresas=[]
     
     def __str__(self):
         res=f"{self.nombre}\n{self.provincia}\n{self.texto}"
@@ -12,4 +13,5 @@ class Localidad:
             aux+=actividad+"\n"
         return res+aux
         
-    
+    def anyade_empresa(self,empresa):
+        self.empresas.append(empresa)

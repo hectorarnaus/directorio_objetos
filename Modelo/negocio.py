@@ -8,11 +8,11 @@ def limpia_comillas(texto):
     return texto
 
 class Negocio:
-    def __init__(self,nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria):
+    def __init__(self,nombre,direccion,CP,municipio,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria):
         self.nombre=html.escape(str(nombre))
         self.direccion=html.escape(str(direccion))
         self.CP=html.escape(str(CP))
-        self.ciudad=html.escape(str(ciudad))
+        self.municipio=html.escape(str(municipio))
         self.provincia=html.escape(str(provincia))
         self.telefono=html.escape(str(telefono))
         if pagina_web!=None:
@@ -48,7 +48,7 @@ class Negocio:
         self.categoria=categoria
    
     def __str__(self):
-        return f'nombre={self.nombre} ciudad={self.ciudad}'
+        return f'nombre={self.nombre} ciudad={self.municipio}'
     
     def obten_horario_lista(self):
         if self.horario==None:
@@ -349,7 +349,7 @@ class Negocio:
             '\t"address": {\n'
             '\t\t"@type": "PostalAddress",\n'
             f'\t\t"streetAddress": "{self.direccion}",\n'
-            f'\t\t"addressLocality": "{self.ciudad}",\n'
+            f'\t\t"addressLocality": "{self.municipio}",\n'
             f'\t\t"addressRegion": "{self.provincia}",\n'
             '\t\t"addressCountry": "ES"\n'
             '\t\t},\n'

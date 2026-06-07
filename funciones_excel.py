@@ -36,29 +36,7 @@ def crea_lista_provincias(fichero_excel):
     except Exception as e:
         print(f"Ocurrió un error: {e}")
 
-def crea_lista_localidades(fichero_excel):
-    lista=[]
-    try:
-        datos=openpyxl.load_workbook(fichero_excel)
-        hoja_activa = datos.active
-        fila=2
-        while fila<ultima_fila_real(hoja_activa):
-            nombre=hoja_activa.cell(row=fila,column=1).value
-            if nombre.isupper():
-                nombre=nombre.capitalize()
-            provincia=hoja_activa.cell(row=fila,column=2).value
-            if provincia.isupper():
-                provincia=provincia.capitalize()
-            actividades=hoja_activa.cell(row=fila,column=4).value
-            texto=hoja_activa.cell(row=fila,column=5).value
-            lista.append(Localidad(nombre,provincia,actividades,texto))
-            fila+=1
-        return lista
-        
-    except FileNotFoundError:
-        print("Error: Archivo no encontrado.")
-    except Exception as e:
-        print(f"Ocurrió un error: {e}")
+
 
 def obten_lista_provincias(fichero_excel):
     lista=[]
@@ -153,18 +131,9 @@ def obten_provincia_de_municipio_con_fichero_localidades(fichero_excel,municipio
     except Exception as e:
         print(f"Ocurrió un error: {e}")
 
-def limpiar_web(web):
-    if web!=None:
-        if web.find("?utm")!=-1:
-            return web[:web.find("?utm")]
-    return web
 
-def limpiar_horario(horario):
-    if horario!=None:
-        horario=horario.replace("&quot;",'"').strip('"')
-        if not horario.startswith("<li>"):
-            horario="<li> "+horario+" </li>"
-    return horario
+
+
 
 
 def parse_list_text(text):
@@ -197,47 +166,7 @@ def parse_list_text(text):
     parts = [p.strip().strip("'\"") for p in re.split(r",\s*", text) if p.strip()]
     return parts
 
-def obten_lista_negocios(fichero_excel):
-    lista_negocios=[]
-    try:
-        datos=openpyxl.load_workbook(fichero_excel)
-        hoja_activa = datos.active
-        fila=1
-        while fila<ultima_fila_real(hoja_activa):
-           
-            nombre=hoja_activa.cell(row=fila,column=1).value if hoja_activa.cell(row=fila,column=1).value!=None else None
-            direccion=hoja_activa.cell(row=fila,column=2).value if hoja_activa.cell(row=fila,column=2).value!=None else None
-            CP=hoja_activa.cell(row=fila,column=3).value if hoja_activa.cell(row=fila,column=3).value!=None else None
-            ciudad=hoja_activa.cell(row=fila,column=4).value if hoja_activa.cell(row=fila,column=4).value!=None else None
-            provincia=hoja_activa.cell(row=fila,column=5).value if hoja_activa.cell(row=fila,column=5).value!=None else None
-            telefono=hoja_activa.cell(row=fila,column=6).value if hoja_activa.cell(row=fila,column=6).value!=None else None
-            pagina_web=limpiar_web(hoja_activa.cell(row=fila,column=7).value if hoja_activa.cell(row=fila,column=7).value!=None else None)
-            actividad=hoja_activa.cell(row=fila,column=8).value if hoja_activa.cell(row=fila,column=8).value!=None else None
-            actividades_relacionadas=hoja_activa.cell(row=fila,column=9).value if hoja_activa.cell(row=fila,column=9).value!=None else None
-            marcas=hoja_activa.cell(row=fila,column=10).value if hoja_activa.cell(row=fila,column=10).value!=None else None
-            descripcion=hoja_activa.cell(row=fila,column=11).value if hoja_activa.cell(row=fila,column=11).value!=None else None
-            mapa=hoja_activa.cell(row=fila,column=12).value if hoja_activa.cell(row=fila,column=12).value!=None else None
-            imagen=hoja_activa.cell(row=fila,column=13).value if hoja_activa.cell(row=fila,column=13).value!=None else None
-            facebook=hoja_activa.cell(row=fila,column=14).value if hoja_activa.cell(row=fila,column=14).value!=None else None
-            instagram=hoja_activa.cell(row=fila,column=15).value if hoja_activa.cell(row=fila,column=15).value!=None else None
-            x=hoja_activa.cell(row=fila,column=16).value if hoja_activa.cell(row=fila,column=16).value!=None else None
-            youtube=hoja_activa.cell(row=fila,column=17).value if hoja_activa.cell(row=fila,column=17).value!=None else None
-            horario=limpiar_horario(hoja_activa.cell(row=fila,column=18).value if hoja_activa.cell(row=fila,column=18).value!=None else None)
-            descripcion_seo=hoja_activa.cell(row=fila,column=19).value  if hoja_activa.cell(row=fila,column=19).value!=None else None
-            tagline=hoja_activa.cell(row=fila,column=20).value  if hoja_activa.cell(row=fila,column=20).value!=None else None
-            categoria=hoja_activa.cell(row=fila,column=21).value  if hoja_activa.cell(row=fila,column=21).value!=None else None
-
-            nuevo=Negocio(nombre,direccion,CP,ciudad,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria)
-            
-            lista_negocios.append(nuevo)
-            fila+=1
-                  
-        return lista_negocios
-    except FileNotFoundError:
-        print("Error: Archivo no encontrado.")
-    except Exception as e:
-        print(f"Ocurrió un error: {e}")
-
+d
 
 def obten_lista_negocios_municipio(fichero_excel,municipio):
     lista_negocios=[]

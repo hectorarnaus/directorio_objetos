@@ -9,8 +9,8 @@ color_contrast3="#E5E7EB"
 color_accent="#F2B900"
 color_noton="#7B2C2C"#accent2
 
-excel_empresas="./xslx/empresas_categorizadas.xlsx"
-excel_localidades="./xslx/localidades.xlsx"
+excel_empresas="./xslx/empresas.xlsx"
+excel_municipios="./xslx/localidades.xlsx"
 excel_provincias="./xslx/provincias.xlsx"
 
 tipo_negocio_schema="Store"

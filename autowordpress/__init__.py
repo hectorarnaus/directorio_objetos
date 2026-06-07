@@ -11,3 +11,4 @@ from .wp_list import WpList
 from .wp_columns import WpColumns
 from .wp_image import WpImage
 from .wp_category import WPCategory
+from .SetAttachmentAltText import SetAttachmentAltText

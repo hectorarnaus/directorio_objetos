@@ -3,8 +3,8 @@ class Provincia:
         self.nombre=nombre
         self.cabecera=cabecera
         self.cuerpo=cuerpo
-        self.localidades=[]
-        self.actividades=actividades.split(',')
+        self.municipios=[]
+        self.actividades=actividades
     
     def __str__(self):
         res=f"{self.nombre}\n{self.cabecera}\n{self.cuerpo}"
@@ -14,6 +14,6 @@ class Provincia:
         return res+aux
         
     
-    def anyade_localidad(self,localidad):
-        self.localidades.append(localidad)
+    def anyade_municipio(self,municipio):
+        self.municipios.append(municipio)
     

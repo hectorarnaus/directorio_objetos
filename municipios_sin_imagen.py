@@ -5,7 +5,7 @@ from funciones import *
 
 
 
-lista_municipios=obten_lista_municipios(excel_localidades)
+lista_municipios=obten_lista_municipios(excel_municipios)
 ruta=os.getcwd()+("/municipio")
 for img in os.listdir(ruta):
     municipio=obten_nombre_municipio(img)    
@@ -16,6 +16,6 @@ for img in os.listdir(ruta):
 ruta=os.getcwd()+("/municipio/temp")
 for municipio in lista_municipios:
     print("Procesando el municipio de "+municipio)
-    Provincia=obten_provincia_de_municipio_con_fichero_localidades(excel_localidades,municipio)
+    Provincia=obten_provincia_de_municipio_con_fichero_localidades(excel_municipios,municipio)
     fichero=open(ruta+"/"+municipio+"_"+Provincia+".jpg","w")
     fichero.write(municipio)

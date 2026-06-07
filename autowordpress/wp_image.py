@@ -1,5 +1,4 @@
 from autowordpress import WpElement
-from autowordpress import Image
 
 class WpImage(WpElement):
 

@@ -52,7 +52,7 @@ def obten_texto_cuerpo_provincia(provincia):
 
 def obten_texto_cuerpo_localidad(localidad):
     try:
-        datos=openpyxl.load_workbook(excel_localidades)
+        datos=openpyxl.load_workbook(excel_municipios)
         hoja_activa = datos.active
         fila=1
         while fila<ultima_fila_real(hoja_activa):

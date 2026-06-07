@@ -4,6 +4,7 @@ from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc.compat import xmlrpc_client
 from wordpress_xmlrpc.methods import media, posts
+from .SetAttachmentAltText import SetAttachmentAltText
 
 class Image():
     def __init__(self,path,alt_text):
@@ -11,8 +12,6 @@ class Image():
         self.alt_text=alt_text
         self.id=0
 
-    def get_alt_text(self):
-        return self.alt_text
     
     def get_url(self):
         return self.link
@@ -32,10 +31,10 @@ class Image():
         self.id=response['id']
         self.link=response['link']
         wppimage = wp.get_connection().call(posts.GetPost(response['id']))
-        wppimage.custom_fields = [{'key':'_wp_attachment_image_alt','value':self.get_alt_text()}]
-        wppimage.title=self.get_alt_text()
-        wppimage.content = self.get_alt_text()
+        wppimage.custom_fields = [{'key':'_wp_attachment_image_alt','value':self.alt_text}]
+
         success = wp.get_connection().call(posts.EditPost(response['id'],wppimage))
+        wp.get_connection().call(SetAttachmentAltText(response['id'], self.alt_text))
         
         if not success: print('Editing alt text for image [{}] failed'.format(self.get_alt_text()))
        
