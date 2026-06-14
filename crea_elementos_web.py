@@ -60,12 +60,7 @@ def crea_botones_datos_contacto(telefono,web):
         )
     return res
 
-def crea_parrafo(texto):
-    res=('\t<!-- wp:paragraph -->\n'
-        f'\t\t<p>{texto}</p>\n'
-        '\t<!-- /wp:paragraph -->\n'
-    )
-    return res
+
 def crea_heading(texto,numero,alineacion="center"):
     if alineacion=="left":
         res=('<!-- wp:heading {"textAlign":"left"} -->\n'
@@ -256,19 +251,5 @@ def crea_migas_ciudad(ciudad,provincia):
     )
     return res
 
-def crea_migas_provincia(provincia):
-    res=(
-        '<!-- wp:html -->\n'
-        f'<nav aria-label="Breadcrumb" class="breadcrumb">\n'
-        '<ul>\n'
-        '<li>\n'
-        f'<a href="{dominio}/">Inicio</a>\n'
-        '</li>\n'
-        f'<li class="breadcrumb-separador">></li>\n'
-        f'<li class="breadcrumb-destacado">{provincia}</li>\n'
-        '</ul>\n'
-        '</nav>\n'
-        '<!-- /wp:html -->\n\n\n'
-    )
-    return res
+
 

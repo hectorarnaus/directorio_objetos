@@ -7,6 +7,8 @@ from Modelo.localidad import *
 
 from autowordpress import *
 
+from configuracion import *
+
 import openpyxl
 
 from funciones import crea_provincia, crea_provincia, obten_nombre_municipio
@@ -17,25 +19,8 @@ class Controlador:
         self.datos_localidades = datos_municipios
         self.datos_provincias = datos_provincias
 
-        self.tipo_negocio="Empresas de alquiler de maquinaria"
-        self.dominio="https://psicosensometrico-ecuador.com/"
-        self.color_base="#1F2937"
-        self.color_base2="#374151"
-        self.color_base3="#F3F4F6"
-        self.color_contrast="#111827"
-        self.color_contrast2="#9CA3AF"
-        self.color_contrast3="#E5E7EB"
-        self.color_accent="#F2B900"
-        self.color_noton="#7B2C2C"#accent2
-
-        self.excel_empresas="./xslx/empresas.xlsx"
-        self.excel_municipios="./xslx/localidades.xlsx"
-        self.excel_provincias="./xslx/provincias.xlsx"
-
-        self.tipo_negocio_schema="Store"
-
         #self.wc=WpConnection(f"{self.dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo4o#Eresgay')
-        self.wc=WpConnection(f"{self.dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo3o,Eresgay')
+        self.wc=WpConnection(f"{dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo3o,Eresgay')
 
     def connect(self):
         self.wc.connect()
@@ -47,11 +32,7 @@ class Controlador:
                return i
         return hoja.max_row
     
-    def __limpiar_web(self,web):
-        if web!=None:
-            if web.find("?utm")!=-1:
-                return web[:web.find("?utm")]
-        return web
+    
     
     def limpiar_horario(self,horario):
         if horario!=None:
@@ -153,7 +134,8 @@ class Controlador:
                 ciudad=hoja_activa.cell(row=fila,column=4).value if hoja_activa.cell(row=fila,column=4).value!=None else None
                 provincia=hoja_activa.cell(row=fila,column=5).value if hoja_activa.cell(row=fila,column=5).value!=None else None
                 telefono=hoja_activa.cell(row=fila,column=6).value if hoja_activa.cell(row=fila,column=6).value!=None else None
-                pagina_web=self.__limpiar_web(hoja_activa.cell(row=fila,column=7).value if hoja_activa.cell(row=fila,column=7).value!=None else None)
+                #pagina_web=self.__limpiar_web(hoja_activa.cell(row=fila,column=7).value if hoja_activa.cell(row=fila,column=7).value!=None else None)
+                pagina_web=hoja_activa.cell(row=fila,column=7).value if hoja_activa.cell(row=fila,column=7).value!=None else None
                 actividad=hoja_activa.cell(row=fila,column=8).value if hoja_activa.cell(row=fila,column=8).value!=None else None
                 actividades_relacionadas=hoja_activa.cell(row=fila,column=9).value if hoja_activa.cell(row=fila,column=9).value!=None else None
                 marcas=hoja_activa.cell(row=fila,column=10).value if hoja_activa.cell(row=fila,column=10).value!=None else None
@@ -164,7 +146,7 @@ class Controlador:
                 instagram=hoja_activa.cell(row=fila,column=15).value if hoja_activa.cell(row=fila,column=15).value!=None else None
                 x=hoja_activa.cell(row=fila,column=16).value if hoja_activa.cell(row=fila,column=16).value!=None else None
                 youtube=hoja_activa.cell(row=fila,column=17).value if hoja_activa.cell(row=fila,column=17).value!=None else None
-                horario=self.limpiar_horario(hoja_activa.cell(row=fila,column=18).value if hoja_activa.cell(row=fila,column=18).value!=None else None)
+                horario=hoja_activa.cell(row=fila,column=18).value if hoja_activa.cell(row=fila,column=18).value!=None else None
                 descripcion_seo=hoja_activa.cell(row=fila,column=19).value  if hoja_activa.cell(row=fila,column=19).value!=None else None
                 tagline=hoja_activa.cell(row=fila,column=20).value  if hoja_activa.cell(row=fila,column=20).value!=None else None
                 categoria=hoja_activa.cell(row=fila,column=21).value  if hoja_activa.cell(row=fila,column=21).value!=None else None

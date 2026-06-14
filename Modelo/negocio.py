@@ -8,6 +8,20 @@ def limpia_comillas(texto):
     return texto
 
 class Negocio:
+    
+    def __limpiar_horario(self,horario):
+        if horario!=None:
+            horario=horario.replace("&quot;",'"').strip('"')
+            if not horario.startswith("<li>"):
+                horario="<li> "+horario+" </li>"
+        return horario
+    
+    def __limpiar_web(self,web):
+        if web!=None:
+            if web.find("?utm")!=-1:
+                return web[:web.find("?utm")]
+        return web
+    
     def __init__(self,nombre,direccion,CP,municipio,provincia,telefono,pagina_web,actividad,actividades_relacionadas,marcas,descripcion,mapa,imagen,facebook,instagram,x,youtube,horario,descripcion_seo,tagline,categoria):
         self.nombre=html.escape(str(nombre))
         self.direccion=html.escape(str(direccion))
@@ -16,6 +30,7 @@ class Negocio:
         self.provincia=html.escape(str(provincia))
         self.telefono=html.escape(str(telefono))
         if pagina_web!=None:
+            pagina_web=self.__limpiar_web(pagina_web)
             self.web=html.escape(str(pagina_web))
         else:
             self.web=None
@@ -39,8 +54,9 @@ class Negocio:
         self.instagram=html.escape(str(instagram))
         self.x=x
         self.youtube=html.escape(str(youtube))    
+        
         if (horario!=None):    
-            self.horario=limpia_comillas(horario)
+            self.horario=limpia_comillas(self.__limpiar_horario(horario))
         else:
             self.horario=None
         self.descripcion_seo=html.escape(str(descripcion_seo))

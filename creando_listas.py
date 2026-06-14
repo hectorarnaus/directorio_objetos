@@ -1,6 +1,5 @@
 
-from controlador import *
-from editando_post import obten_nombre_provincia
+from Controlador.controlador import *
 from ficheros_datos.constantes_configuracion import *
 
 c=Controlador(excel_empresas,excel_municipios,excel_provincias)

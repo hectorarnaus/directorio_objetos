@@ -34,21 +34,6 @@ def obten_texto_H1(provincia):
         print(f"Ocurrió un error: {e}")
     return ""
 
-def obten_texto_cuerpo_provincia(provincia):
-    try:
-        datos=openpyxl.load_workbook(excel_provincias)
-        hoja_activa = datos.active
-        fila=1
-        while fila<ultima_fila_real(hoja_activa):
-            if hoja_activa.cell(row=fila,column=1).value==provincia:
-                return hoja_activa.cell(row=fila,column=7).value
-            fila+=1
-
-    except FileNotFoundError:
-        print("Error: Archivo no encontrado.")
-    except Exception as e:
-        print(f"Ocurrió un error: {e}")
-    return ""
 
 def obten_texto_cuerpo_localidad(localidad):
     try:
@@ -159,26 +144,5 @@ def crea_texto_ciudad(ciudad):
     return res
         
         
-def extraer_parrafos(texto: str):
-    trozos=texto.split("</p>")
 
-    i=0
-    while i<len(trozos):
-        if "<p>" in trozos[i]:
-            trozos[i]=trozos[i].replace("<p>","")
-            trozos[i]=trozos[i].strip()
-        i+=1
-    return trozos
 
-def dividir_parrafo(parrafo: str):
-    parrafos=parrafo.split(".")    
-    if len(parrafos)==3:
-        return [parrafos[0]+".",parrafos[1]+"."]
-    else:
-        primero=""
-        for i in range(0,int(len(parrafos)/2)):
-            primero+=parrafos[i]+"."
-        segundo=""
-        for i in range(int(len(parrafos)/2+1),len(parrafos)-1):
-            segundo+=segundo[i]+"."
-        return [primero,segundo]
