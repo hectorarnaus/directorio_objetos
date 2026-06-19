@@ -2,7 +2,7 @@ import openpyxl
 from Modelo.provincia import Provincia
 from Modelo.negocio import Negocio
 from Modelo.localidad import Localidad
-from municipio import Municipio
+#from municipio import Municipio
 import ast, re
 
 
@@ -166,7 +166,7 @@ def parse_list_text(text):
     parts = [p.strip().strip("'\"") for p in re.split(r",\s*", text) if p.strip()]
     return parts
 
-d
+ 
 
 def obten_lista_negocios_municipio(fichero_excel,municipio):
     lista_negocios=[]

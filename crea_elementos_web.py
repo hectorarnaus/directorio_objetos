@@ -140,13 +140,7 @@ def crea_contenedor_contacto(contenido):
     )
     return res
 
-def crea_bloque_anuncio_manual():
-    res=(
-        '<!-- wp:shortcode -->\n'
-        '\t[adinserter name="anuncio_manual"]\n'
-        '<!-- /wp:shortcode -->\n'
-    )
-    return res
+
 
 def crea_bloque_contacto(negocio):
     res=(f'{crea_heading("Datos de contacto",2)}'    

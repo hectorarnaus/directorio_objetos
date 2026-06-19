@@ -1,6 +1,5 @@
 import re, html
 from random import choice,randint
-from ficheros_datos.keywords import *
 from ficheros_datos.datos_población import *
 from crea_elementos_web import *
 from ficheros_datos.constantes_configuracion import *
@@ -59,21 +58,7 @@ def maqueta_texto_cuerpo_localidad(texto):
         parrafo=parrafo.strip()
         res+=f'{crea_parrafo(parrafo)}'
     return res
-def obten_texto_H1_old(provincia):
-    with open('plantillas_textos/H1_provincia.txt', 'r') as file :
-        texto_base = file.read()
-        texto=spinner(texto_base)
-        texto=texto.replace("*Provincia*",provincia)
-        cantidad_keywords=texto.find("#keyword#")
-        i=0
-        keywords_usadas=[]
-        while i<cantidad_keywords:
-            nueva_keyword=randint(0,len(keywords_h1)-1)
-            if nueva_keyword not in keywords_usadas:
-                keywords_usadas.append(nueva_keyword)
-                texto=texto.replace("#keyword#",keywords_h1[nueva_keyword],1)      
-            i+=1
-        return texto
+
     
 def obten_texto_H2(fichero,lista_keywords,provincia):
     with open(f'plantillas_textos/{fichero}', 'r') as file :

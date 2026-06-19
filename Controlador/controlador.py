@@ -11,7 +11,8 @@ from configuracion import *
 
 import openpyxl
 
-from funciones import crea_provincia, crea_provincia, obten_nombre_municipio
+from funciones import obten_nombre_municipio
+from Vista.vista_provincia import Vista_Provincia
 
 class Controlador:
     def __init__(self,datos_empresas,datos_municipios,datos_provincias):
@@ -19,7 +20,7 @@ class Controlador:
         self.datos_localidades = datos_municipios
         self.datos_provincias = datos_provincias
 
-        #self.wc=WpConnection(f"{self.dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo4o#Eresgay')
+        #self.wc=WpConnection(f"{dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo4o#Eresgay')
         self.wc=WpConnection(f"{dominio}//xmlrpc.php",'hector.arnaus@gmail.com','bolo3o,Eresgay')
 
     def connect(self):
@@ -181,11 +182,16 @@ class Controlador:
         return imagen.split("_")[0]
     
     def crea_articulo_provincia(self,provincia):
-        ruta=os.getcwd()+("/provincia/"+provincia.nombre+".webp")
-        wp_img=Image(ruta,f"Descubre todas las {self.tipo_negocio.lower()} en la provincia de {provincia.nombre} ordenadas por orden alfabético")
-        wp_img.upload(self.wc)
-        wp_article=WpPost(f"{self.tipo_negocio} en la provincia de {provincia.nombre}")
-        wp_article.add_element(crea_provincia(provincia,wp_img))
+        
+        ruta=os.getcwd()+("/imagenes_provincias/"+provincia.nombre+".webp")
+        imagen_provincia=Image(ruta,f"Descubre todas las {tipo_negocio.lower()} en la provincia de {provincia.nombre} ordenadas por orden alfabético")
+        imagen_provincia.upload(self.wc)
+       
+
+        wp_article=WpPost(f"{tipo_negocio} en la provincia de {provincia.nombre}")
+        web_vista= Vista_Provincia(provincia,imagen_provincia)
+        contenido_provincia=web_vista.crea_contenido_articulo_provincia()
+        wp_article.add_element(contenido_provincia)
         wp_article.set_slug(self.sluguiza("provincia de "+provincia.nombre))
         wp_article.add_category("provincia")
         self.wc.publica_post(wp_article)

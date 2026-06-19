@@ -2,7 +2,6 @@
 
 import os
 import urllib.request
-from funciones import sluguiza
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc.compat import xmlrpc_client
@@ -21,7 +20,7 @@ class WpPost():
         else:
           self.post.terms_names = {
               'post_tag': [],
-              'category': [sluguiza(categoria)]
+              'category': [categoria]
             }
 
         self.post.post_status = 'publish'

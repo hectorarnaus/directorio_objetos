@@ -17,7 +17,7 @@ for municipio in municipios:
         if empresa.municipio==municipio.nombre:
             municipio.anyade_empresa(empresa)
 
-lista_imagenes=c.crea_lista_imagenes_municipio(os.getcwd()+("/municipio"))
+lista_imagenes=c.crea_lista_imagenes_municipio(os.getcwd()+("/imagenes_municipios"))
 lista_municipios_sin_imagen=c.crea_lista_municipios_sin_imagen(municipios,lista_imagenes)
 if len(lista_municipios_sin_imagen)>0:
     print("Los siguientes municipios no tienen imagen:")

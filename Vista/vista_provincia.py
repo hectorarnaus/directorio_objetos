@@ -1,6 +1,6 @@
 from Utilidades import ProcesadorTexto
 from configuracion import *
-from elementos_web import *
+from Vista.elementos_web import *
 
 class Vista_Provincia:
     def __init__(self, provincia,imagen):
@@ -23,7 +23,7 @@ class Vista_Provincia:
         )
         return res
     
-    def crea_provincia(self):
+    def crea_contenido_articulo_provincia(self):
         
         parrafos=ProcesadorTexto.extraer_parrafos(self.provincia.cuerpo)
         aux=ProcesadorTexto.dividir_parrafo(parrafos[0])

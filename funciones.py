@@ -2,7 +2,6 @@ import html
 from funciones_excel import *
 from ficheros_datos.constantes_configuracion import *
 from funciones_generar_texto import *
-from ficheros_datos.keywords import *
 from crea_elementos_web import *
 from funciones_schema import *
 
